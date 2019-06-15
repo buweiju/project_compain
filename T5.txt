@@ -1,0 +1,62 @@
+// ConsoleApplication3.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+//
+
+#include "pch.h"
+#include <iostream>
+
+
+
+  struct TreeNode 
+  {
+     int val;
+     TreeNode *left;
+     TreeNode *right;
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ };
+
+class Solution {
+public:
+	int maxDepth(TreeNode* root) {
+		int leftDepth;
+		int RightDepth;
+		int max_depth;
+		if (root) {
+			leftDepth = maxDepth(root->left); //求左子树的深度
+			RightDepth = maxDepth(root->right); //求右子树的深度
+			max_depth = (leftDepth > RightDepth) ? leftDepth : RightDepth; //取左右子树中较大的深度
+			return (max_depth + 1); //返回树的深度
+		}
+		else return 0; //空树深度为0
+	}
+};
+
+
+int main()
+{
+	 Solution MINE;
+	//[3,9,20,null,null,15,7]
+    std::cout << "Hello World!\n"; 
+	TreeNode T9(9);
+	TreeNode T15(15);
+	TreeNode T7(7);
+	TreeNode T20(20);
+	TreeNode T3(3);
+	T3.left = &T9;
+	T3.right = &T20;
+	T20.right = &T7;
+	T20.left = &T15;
+	int value =MINE.maxDepth(&T3);
+	std::cout << value << std::endl;
+
+}
+
+// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
+// 调试程序: F5 或调试 >“开始调试”菜单
+
+// 入门提示: 
+//   1. 使用解决方案资源管理器窗口添加/管理文件
+//   2. 使用团队资源管理器窗口连接到源代码管理
+//   3. 使用输出窗口查看生成输出和其他消息
+//   4. 使用错误列表窗口查看错误
+//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
+//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件

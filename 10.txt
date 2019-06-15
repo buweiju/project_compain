@@ -1,0 +1,110 @@
+#include <iostream>
+using namespace std;
+long int func1(int n);
+int main()
+{
+    int n,y;
+    cin>>n;
+    y=func1(n);
+    cout<<y<<endl;
+    return 0;
+}
+long int func1(int n)
+{
+    long int f;
+    if(n==1)
+        f=1;
+    else
+        f=n*func1(n-1);
+    return f;
+}
+
+法2
+
+#include<stdio.h>
+double fact(n);//函数声明
+int main(void)
+{
+    int i;
+    double sum;
+    sum=0;
+    for(i=1;i<=100;i++)
+    {
+        sum=sum+fact(i);
+
+    }
+    printf("1-100阶乘的累加和是:%e\n",sum);//%e是用指数形式输出
+    return 0;
+}
+double fact(int n)
+{
+
+    int i;
+    double result;
+    result=1;
+    for(i=1;i<=n;i++)
+    {
+        result=result*i;
+    }
+    return result;
+}
+
+#include<stdio.h>
+#include<math.h>
+double fact(int n);
+int main(void)
+{
+	int i,N;
+	double a,sum=0;
+	scanf("%d",&N);
+	for(i = 1;i <= N;i++){
+	a = fact(i);
+	sum =sum + a;
+}
+	printf("%.0f",sum);
+return 0;
+}
+
+
+double fact(int n)
+{
+	int i;
+	double product = 1;
+	for(i = 1; i <= n; i++){
+		product = product * i;
+	}
+	return product;
+}
+
+法3
+
+#include<iostream>
+using namespace std;
+
+//求某项阶乘的值  5!=1*2*3*4*5
+int fun(int i)
+{
+	if(1==i)
+		return 1;
+	return fun(i-1)*i;
+}
+//求前n项阶乘的和	s(x)=f(1)+f(2)+...f(x)
+int fun2(int i)
+{
+	if(1==i)
+		return 1;
+	return fun2(i-1)+i;
+}
+
+int fun3(int i)
+{
+	return fun(i)+fun2(i);
+}
+
+int main()
+{
+	cout<<fun(5)<<endl;				//
+	cout<<fun2(5)<<endl;			//
+	cout<<fun3(5)<<endl;
+	return 0;
+}
